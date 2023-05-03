@@ -28,6 +28,7 @@ public class Round extends Game {
 
 
     public static String choosePlayer() throws FileNotFoundException, InterruptedException {
+        restartLife();
         System.out.println("-> Choose your player.");
         System.out.println("--------------------------------------------------------------------------------------");
         asciiMuqueMan.asciiPrint();
@@ -54,11 +55,13 @@ public class Round extends Game {
             System.out.println("You Lost, Winner is Alien");
             roundDTO.continua = false;
             conditionBackToMenu.conditionBackToMenuAction();
+
         } else if (roundDTO.lifeAlien <= 0){
             System.out.println("Congratulations, you are Winner, " + roundDTO.playerOficial);
             asciiPlanetaSeguro.asciiPrint();
             roundDTO.continua = false;
             conditionBackToMenu.conditionBackToMenuAction();
+
         } else if (roundNumber == 6){
             roundDTO.continua = false;
             System.out.println("Game Over");
@@ -72,6 +75,7 @@ public class Round extends Game {
                 System.out.println("You lost. Winner is Alien");
             }
             conditionBackToMenu.conditionBackToMenuAction();
+
         }
         return roundDTO;
     }
@@ -141,5 +145,10 @@ public class Round extends Game {
 
         roundDTO = new RoundDTO(life, lifeAlien, playerOficial, true);
         return conditionLife(roundDTO, roundNumber);
+    }
+
+    public static void restartLife(){
+        life = 200;
+        lifeAlien = 200;
     }
 }
