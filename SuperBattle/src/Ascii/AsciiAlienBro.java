@@ -10,7 +10,7 @@ public class AsciiAlienBro extends Ascii {
 
     @Override
     public void asciiPrint() throws FileNotFoundException, InterruptedException {
-        File file = new File("C:\\Users\\Adauto\\Desktop\\Faculdade\\2 semestre\\P.O.O Java\\Trabalho AV2\\ascii\\alienBro.txt");
+        File file = new File("ascii\\alienBro.txt");
         Scanner reader = new Scanner(file);
         System.out.println("--------------------------------------------------------------------------------------");
         while(reader.hasNextLine()){
