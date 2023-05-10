@@ -1,5 +1,4 @@
-import Ascii.*;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
@@ -10,32 +9,38 @@ public class Round extends Game {
     static Scanner sc = new Scanner(System.in);
     static Game game = new Game();
     static String playerOficial;
-    static AsciiMuqueMan asciiMuqueMan = new AsciiMuqueMan();
-    static AsciiRaioLaser asciiRaioLaser = new AsciiRaioLaser();
-    static AsciiRelampago asciiRelampago = new AsciiRelampago();
     static int life = 200;
     static int lifeAlien = 200;
     static MuqueMan muqueMan = new MuqueMan();
     static Alien alien = new Alien();
     static RaioLaser raioLaser = new RaioLaser();
     static Relampago relampago = new Relampago();
-    static AsciiPlanetaSeguro asciiPlanetaSeguro = new AsciiPlanetaSeguro();
-    static AsciiAlienBro asciiAlienBro = new AsciiAlienBro();
-    static AsciiAlienChegando asciiAlienChegando = new AsciiAlienChegando();
-    static AsciiPlanetaDestruido asciiPlanetaDestruido = new AsciiPlanetaDestruido();
     static AsciiLoser asciiLoser = new AsciiLoser();
     static ConditionBackToMenu conditionBackToMenu = new ConditionBackToMenu();
-
+    static Ascii ascii = new Ascii();
 
     public static String choosePlayer() throws FileNotFoundException, InterruptedException {
         restartLife();
         System.out.println("-> Choose your player.");
         System.out.println("--------------------------------------------------------------------------------------");
-        asciiMuqueMan.asciiPrint();
+        try {
+            ascii.asciiPrint(new File("src\\Ascii\\muqueMan.txt"));
+        } catch (FileNotFoundException | InterruptedException e){
+            System.out.println("Error.");
+        }
+
         System.out.println("--------------------------------------------------------------------------------------");
-        asciiRaioLaser.asciiPrint();
+        try {
+            ascii.asciiPrint(new File("src\\Ascii\\raioLaser.txt"));
+        } catch (FileNotFoundException | InterruptedException e){
+            System.out.println("Error.");
+        }
         System.out.println("--------------------------------------------------------------------------------------");
-        asciiRelampago.asciiPrint();
+        try {
+            ascii.asciiPrint(new File("src\\Ascii\\relampago.txt"));
+        } catch (FileNotFoundException | InterruptedException e){
+            System.out.println("Error.");
+        }
         System.out.println("--------------------------------------------------------------------------------------");
 
         int choosePlayer = sc.nextInt();
@@ -58,7 +63,12 @@ public class Round extends Game {
 
         } else if (roundDTO.lifeAlien <= 0){
             System.out.println("Congratulations, you are Winner, " + roundDTO.playerOficial);
-            asciiPlanetaSeguro.asciiPrint();
+            try {
+                ascii.asciiPrint(new File("src\\Ascii\\planetaSeguro.txt"));
+            } catch (FileNotFoundException | InterruptedException e){
+                System.out.println("Error.");
+            }
+
             roundDTO.continua = false;
             conditionBackToMenu.conditionBackToMenuAction();
 
@@ -67,7 +77,11 @@ public class Round extends Game {
             System.out.println("Game Over");
             if (life > lifeAlien){
                 System.out.println("Congratulations, you are Winner, " + roundDTO.playerOficial);
-                asciiPlanetaSeguro.asciiPrint();
+                try {
+                    ascii.asciiPrint(new File("src\\Ascii\\planetaSeguro.txt"));
+                } catch (FileNotFoundException | InterruptedException e){
+                    System.out.println("Error.");
+                }
             } else if (life == lifeAlien){
                 System.out.println("tie! there was no winner.");
             } else {

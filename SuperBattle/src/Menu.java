@@ -1,20 +1,24 @@
-import Ascii.AsciiSuperBattle;
-
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu {
     // Statement
     private static Scanner sc = new Scanner(System.in);
-    AsciiSuperBattle asciiInitial = new AsciiSuperBattle();
     Round round = new Round();
     public static int life;
     public static int lifeAlien;
     public static String playerOficial;
     GameGeneral game = new GameGeneral();
+    Ascii ascii = new Ascii();
 
     public void Introduction() throws FileNotFoundException, InterruptedException {
-        asciiInitial.asciiPrint();
+        try {
+            ascii.asciiPrint(new File(("src\\Ascii\\superBattle.txt")));
+        } catch (FileNotFoundException | InterruptedException e){
+            System.out.println("Error.");
+        }
+
         System.out.println("\n---------------- MENU -----------------\n");
         System.out.println(" [01]  PLAY \n [02]  SEE ABOUT \n [03]  EXIT\n \n Game developed by @adautodf (instagram)\n");
     }
